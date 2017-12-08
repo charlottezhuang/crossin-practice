@@ -1,0 +1,18 @@
+c = 1
+c_list = []
+d = 1
+for c in range(1,201):
+    a = c * c
+    c_list =[]
+    for i in str(a):
+        c_list.append(int(i))
+    length = len(c_list)
+    d = 0
+    while d < length:
+        if c_list[d] == c_list[length-d-1]:
+            d += 1
+            if d == length :
+                print(c)
+
+        else:
+            break
