@@ -1,0 +1,23 @@
+import random
+def numberguess():
+    n = random.randint(0,50)
+    user = int(input('what\'s your guess?'))
+    counter = 1
+    while user != n:
+        if user > n:
+            print('It is too big! Guess again!')
+        elif user < n:
+            print('It is too small! Guess again!')
+        user = int(input())
+        counter += 1
+        if counter == 5:
+            print('Too many guesses! You lose!')
+            numberguess()
+            break
+            
+    if user == n:
+        print('You win!')
+        print('You\'ve guessed %s times!' % counter)
+        numberguess()
+
+numberguess()
