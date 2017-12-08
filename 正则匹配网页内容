@@ -1,0 +1,11 @@
+import urllib.request
+import re
+
+url = 'https://book.douban.com/tag/%E6%8E%A8%E7%90%86?start=90&type=T'
+req = urllib.request.urlopen(url)
+html = req.read()
+html_str = html.decode('utf-8')
+pattern = re.compile('title=\".*?\"')
+groups = pattern.findall(html_str)
+print(groups)
+print(len(groups))
