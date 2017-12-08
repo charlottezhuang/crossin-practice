@@ -1,0 +1,11 @@
+to split a sting:
+text = ' site sea sue sweet see case sse ssee loses '
+text2 = text.split(' ')
+
+to join to form a string:
+s = '  '
+text3 = s.join(text2)
+
+to split into characters from a string:
+for item in text:
+    print(item)
