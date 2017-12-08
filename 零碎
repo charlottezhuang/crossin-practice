@@ -9,3 +9,6 @@ text3 = s.join(text2)
 to split into characters from a string:
 for item in text:
     print(item)
+
+保留浮点数 %后面的s保证可以print出来成string
+print("%s this is%.2f %s %s %s" %(a,3.2454345,c,d,e))
