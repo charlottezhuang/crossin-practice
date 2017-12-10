@@ -12,3 +12,12 @@ for item in text:
 
 保留浮点数 %后面的s保证可以print出来成string
 print("%s this is%.2f %s %s %s" %(a,3.2454345,c,d,e))
+
+import random 
+import string
+lis = []
+a = list(string.ascii_letters)
+random.shuffle(a)
+b = ''.join(a[:8])
+lis.append(b)
+print(lis)
