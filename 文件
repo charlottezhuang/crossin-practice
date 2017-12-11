@@ -1,0 +1,9 @@
+读取文件
+f1 = open('from.txt')
+data = f1.read()
+f1.close()
+
+写入文件
+f2 = open('to.txt', 'w')
+f2.write(data)
+f2.close()
