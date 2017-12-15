@@ -9,3 +9,16 @@ pattern = re.compile('title=\".*?\"')
 groups = pattern.findall(html_str)
 print(groups)
 print(len(groups))
+
+用xpath的方法：
+import requests
+from lxml import etree
+url = 'http://duanziwang.com/'
+req = requests.get(url)
+html = req.text
+tree = etree.HTML(html)
+result = tree.xpath('//p[@class="note"]')
+
+for a in result:
+    content =a.xpath('text()')
+    print(content)
