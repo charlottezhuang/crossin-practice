@@ -1,0 +1,59 @@
+import requests
+from lxml import etree
+
+data_all = ''
+page = 3
+for i in range(0,page):
+    url = 'https://www.qiushibaike.com/8hr/page/%d/'%page
+
+    req = requests.get(url)
+    html = req.text
+    tree = etree.HTML(html)
+
+    duanzi = tree.xpath('//div[@class="content"]/span')
+    nianling = tree.xpath('//div[@class="articleGender manIcon"]|//div[@class="articleGender womenIcon"]')
+    zuozhe = tree.xpath('//h2')
+    haoxiao = tree.xpath('//span/i[@class="number"]')
+    pinglun = tree.xpath('//a/i[@class="number"]')
+    xingbie = tree.xpath('//div[@class="author clearfix"]/div/@class')
+    ageindex = 0
+    for a in range(0,25):
+        
+        content = (duanzi[a].xpath('text()'))[0].strip('\n')
+        author = (zuozhe[a].xpath('text()'))[0].strip('\n')
+        funny = (haoxiao[a].xpath('text()'))[0].strip('\n')
+        comment=(pinglun[a].xpath('text()'))[0].strip('\n')
+
+        if author !='匿名用户':
+            age = (nianling[ageindex].xpath('text()'))[0].strip('\n')
+            rgender = xingbie[ageindex]
+            ageindex += 1
+            if rgender == 'articleGender manIcon':
+                gender = '男'
+            else:
+                gender ='女'
+        elif author == '匿名用户':
+            age = '未知'
+            gender = '未知'
+
+        data_all+='\n\n'
+        data_all+='=============='
+        data_all +='\n'
+        data_all+=content
+        data_all+='\n'
+        data_all += '作者:'
+        data_all+= author
+        data_all += '  年龄:'
+        data_all+= age
+        data_all += '  性别:'
+        data_all+= gender
+        data_all += '  好笑数:'
+        data_all+= funny
+        data_all += '   评论数:'
+        data_all +=comment
+
+
+
+with open('jokes.txt','w') as f:
+    f.write(data_all)
+        
